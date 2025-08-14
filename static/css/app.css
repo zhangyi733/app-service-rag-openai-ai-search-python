@@ -1,52 +1,60 @@
 /* Main app styles */
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background: linear-gradient(120deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
 }
 
 /* Card styles for chat messages */
 .user-card {
-    border-radius: 1rem 1rem 0.25rem 1rem;
-    background-color: #E3F2FD;
+    border-radius: 1.2rem 1.2rem 0.5rem 1.2rem;
+    background: linear-gradient(90deg, #e3f2fd 80%, #f5f7fa 100%);
     border: none;
+    box-shadow: 0 2px 12px 0 rgba(33, 150, 243, 0.07);
 }
 
 .assistant-card {
-    border-radius: 1rem 1rem 1rem 0.25rem;
-    background-color: #E8F5E9;
+    border-radius: 1.2rem 1.2rem 1.2rem 0.5rem;
+    background: linear-gradient(90deg, #e8f5e9 80%, #f5f7fa 100%);
     border: none;
+    box-shadow: 0 2px 12px 0 rgba(76, 175, 80, 0.07);
 }
 
 /* Avatar badges */
+
 .avatar-badge {
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 0.75rem;
-    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.07);
+    border: 2px solid #fff;
 }
 
 .user-avatar-badge {
-    background-color: #1976D2;
+    background: linear-gradient(135deg, #1976D2 60%, #64b5f6 100%);
 }
 
 .assistant-avatar-badge {
-    background-color: #2E7D32;
+    background: linear-gradient(135deg, #2E7D32 60%, #81c784 100%);
 }
 
 /* Loading indicator - simplified but keeping essential animation */
+
 .loading-indicator {
     display: flex;
     align-items: center;
     min-height: 20px;
     padding: 0.5rem;
+    background: transparent;
 }
 
 .loading-indicator span {
@@ -70,6 +78,104 @@ html, body {
 @keyframes bounce {
     0%, 80%, 100% { transform: scale(0.6); opacity: 0.6; }
     40% { transform: scale(1.0); opacity: 1; }
+}
+
+
+/* Modern chat app layout */
+.modern-chat-app {
+    background: transparent;
+}
+.modern-header {
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid #e3e3e3;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+}
+.modern-main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+}
+.modern-chat-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 7rem;
+    background: transparent;
+}
+.modern-quick-questions {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.modern-chat-form {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    background: transparent;
+    padding-bottom: 1.5rem;
+}
+.modern-input-bar {
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 2px 16px 0 rgba(33, 150, 243, 0.07);
+    border-radius: 2rem;
+    border: 1px solid #e3e3e3;
+    transition: box-shadow 0.2s;
+}
+.modern-input-bar:focus-within {
+    box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.13);
+    border-color: #90caf9;
+}
+.modern-input-bar input {
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+}
+.modern-input-bar button#send-button {
+    box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.13);
+    transition: background 0.2s;
+}
+.modern-input-bar button#send-button:active {
+    background: #1976D2;
+}
+.modern-input-bar svg {
+    margin-left: 1px;
+}
+
+/* Feedback button modern look */
+.feedback-btn {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.15s, color 0.15s;
+    border: none;
+    background: #f5f7fa;
+    color: #1976D2;
+    box-shadow: 0 1px 4px 0 rgba(33, 150, 243, 0.07);
+}
+.feedback-btn[data-feedback="thumb_down"] {
+    color: #d32f2f;
+}
+.feedback-btn.active, .feedback-btn:active {
+    background: #1976D2;
+    color: #fff !important;
+}
+.feedback-btn[data-feedback="thumb_down"].active, .feedback-btn[data-feedback="thumb_down"]:active {
+    background: #d32f2f;
+    color: #fff !important;
+}
+.feedback-btn:hover {
+    background: #e3f2fd;
+}
+.feedback-status {
+    min-width: 120px;
 }
 
 /* Citation overlay and modal styles */
@@ -143,10 +249,21 @@ html, body {
 /* Responsive adjustments */
 @media (max-width: 576px) {
     .user-card, .assistant-card {
-        max-width: 90% !important;
+        max-width: 98% !important;
     }
-    
+    .modern-header {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .modern-chat-container {
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+    }
+    .modern-input-bar {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
     .citation-modal {
-        width: 95%;
+        width: 99%;
     }
 }

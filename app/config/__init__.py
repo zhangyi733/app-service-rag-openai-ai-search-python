@@ -29,6 +29,8 @@ class SearchSettings(BaseModel):
 
 
 class AppSettings(BaseSettings):
+    # Evaluation logging
+    azure_evaluation_blob: str = Field("evaluation.jsonl", env="AZURE_EVALUATION_BLOB")
     """Application settings with environment variable loading capabilities"""
     # Azure OpenAI Settings
     azure_openai_endpoint: str = Field(..., env="AZURE_OPENAI_ENDPOINT")
@@ -47,6 +49,11 @@ class AppSettings(BaseSettings):
     
     # Optional port setting
     port: int = Field(8080, env="PORT")
+
+    # Azure Blob Storage for feedback (MSI)
+    azure_blob_account_url: str = Field(..., env="AZURE_BLOB_ACCOUNT_URL")  # e.g. https://<account>.blob.core.windows.net
+    azure_blob_container: str = Field(..., env="AZURE_BLOB_CONTAINER")
+    azure_blob_feedback_blob: str = Field("feedback.jsonl", env="AZURE_BLOB_FEEDBACK_BLOB")
     
     class Config:
         env_file = ".env"
