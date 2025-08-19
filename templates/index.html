@@ -19,19 +19,6 @@
             </div>
         </header>
         <main class="flex-grow-1 modern-main bg-gradient position-relative">
-            <div class="modern-quick-questions container-fluid mb-2">
-                <div class="d-flex gap-2 flex-wrap justify-content-center">
-                    <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3" id="btn-personal-info">
-                        Personal information
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3" id="btn-warranty">
-                        Warranty claim
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3" id="btn-company">
-                        About the company
-                    </button>
-                </div>
-            </div>
             <div id="chat-container" class="modern-chat-container px-0 px-md-3 py-3">
                 <div id="chat-history"></div>
                 <div id="loading-indicator" class="d-none">
@@ -51,12 +38,6 @@
                     </div>
                 </div>
             </div>
-            <div id="error-container" class="alert alert-danger mt-3 d-none container" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2" viewBox="0 0 16 16">
-                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                </svg>
-                <div id="error-message"></div>
-            </div>
             <div class="modern-quick-questions container-fluid mb-2">
                 <div class="d-flex gap-2 flex-wrap justify-content-center">
                     <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3" id="btn-personal-info">
@@ -70,6 +51,12 @@
                     </button>
                 </div>
             </div>
+            <div id="error-container" class="alert alert-danger mt-3 d-none container" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div id="error-message"></div>
+            </div>
             <form id="chat-form" class="modern-chat-form container-fluid">
                 <div class="modern-input-bar d-flex align-items-center bg-white shadow rounded-pill px-3 py-2">
                     <input type="text" class="form-control border-0 bg-transparent" id="chat-input" placeholder="Type your message..." autocomplete="off" style="font-size:1.1rem;" />
@@ -80,27 +67,28 @@
                     </button>
                 </div>
             </form>
+            <div id="query-notification" class="alert alert-info container mt-3 d-flex align-items-center" role="alert">
+                <svg width="24" height="24" fill="none" stroke="#4299e1" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;">
+                    <circle cx="12" cy="12" r="10" stroke="#4299e1" stroke-width="2" fill="#ebf8ff"/>
+                    <line x1="12" y1="8" x2="12" y2="12" stroke="#4299e1" stroke-width="2"/>
+                    <circle cx="12" cy="16" r="1" fill="#4299e1"/>
+                </svg>
+                <span>
+                    <strong>Notice:</strong> Please do not submit any sensitive, confidential, or personal data in your queries.
+                </span>
+            </div>
         </main>
     </div>
 
     <!-- Templates for chat messages -->
     <template id="empty-chat-template">
         <div class="text-center d-flex flex-column justify-content-center align-items-center h-100">
-            <div style="color: #6c757d; font-size: 4rem;">💬</div>
-            <h3 class="fw-bold mt-3">Chat with your data</h3>
-            <p class="text-muted mb-4">Ask a question about your data using the text box below.</p>
-            <div class="d-flex justify-content-center">
-                <div class="card bg-white" style="max-width: 450px;">
-                    <div class="card-body p-4">
-                        <h5 class="mb-3">Try asking about:</h5>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">• Personal information</li>
-                            <li class="mb-2">• Warranty claim</li>
-                            <li class="mb-2">• About the company</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <h4 class="fw-normal text-center mb-2" style="font-size: 2.8rem; white-space: nowrap;">
+                Chat with your data
+            </h4>
+            <h2 class="fw-bold text-center m-0" style="font-size: 2.8rem; white-space: nowrap;">
+                What can help you with?
+            </h2>
         </div>
     </template>
 

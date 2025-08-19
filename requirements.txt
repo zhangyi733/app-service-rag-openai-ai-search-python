@@ -9,3 +9,14 @@ python-multipart==0.0.20
 pydantic==2.11.4
 pydantic-settings==2.2.1
 rich==14.0.0
+azure-storage-blob
+azure-search-documents
+azure-core
+# azure-ai-textanalytics==5.9.0
+# azure-ai-formrecognizer==4.5.0
+# azure-ai-translation-text==1.0.0
+# azure-ai-vision==1.0.0
+# azure-ai-language-conversations==1.0.0
+# azure-ai-language-questionanswering==1.0.0
+# azure-ai-language-textanalytics==1.0.0
+# azure-ai-language-entityrecognition==1.0.0          

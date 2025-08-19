@@ -108,15 +108,16 @@ html, body {
 .modern-quick-questions {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    padding-bottom: 120px;
 }
 .modern-chat-form {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 20;
-    background: transparent;
-    padding-bottom: 1.5rem;
+position: fixed;
+left: 0;
+right: 0;
+bottom: 3.5rem; /* Move form box even higher to leave more space for notification and page bottom */
+z-index: 20;
+background: transparent;
+padding-bottom: 1.5rem;
 }
 .modern-input-bar {
     background: rgba(255,255,255,0.95);
@@ -244,6 +245,25 @@ html, body {
 
 .citation-close-button:hover {
     opacity: 0.75;
+}
+
+/* Notification styles */
+#query-notification {
+    margin-top: 0.5rem; /* Reduce space between form and notification */
+    margin-bottom: 2rem; /* Leave more space from page bottom */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #f8fafc 0%, #e0e7ef 100%);
+    color: #2d3748;
+    font-size: 0.8rem; /* Reduce font size */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 1;
+    position: relative;
 }
 
 /* Responsive adjustments */
