@@ -114,8 +114,6 @@ class RagChatService:
             }
             
             # Call Azure OpenAI for completion with the data_sources parameter directly
-            # The data_sources parameter enables the "On Your Data" pattern, where
-            # Azure OpenAI automatically retrieves relevant documents from your search index
             response = await self.openai_client.chat.completions.create(
                 model=self.gpt_deployment,
                 messages=messages,
@@ -124,8 +122,24 @@ class RagChatService:
                 },
                 stream=False
             )
-            
-            # Return the raw response
+
+            # Post-process citations in the response to robustly trim parent_id if present
+            # Only trim if the last line matches >80 random alphanumeric characters
+            if hasattr(response, 'choices') and response.choices:
+                for choice in response.choices:
+                    context = getattr(choice.message, 'context', None)
+                    if context and 'citations' in context:
+                        for citation in context['citations']:
+                            if 'content' in citation:
+                                lines = citation['content'].split('\n')
+                                # Check if last line is a long random string (parent_id)
+                                if len(lines) > 1 and len(lines[-1]) > 80 and lines[-1].isalnum():
+                                    # Remove the last line
+                                    citation['content'] = '\n'.join(lines[:-1]).strip()
+                                else:
+                                    citation['content'] = citation['content'].strip()
+
+            # Return the processed response
             return response
             
         except Exception as e:
