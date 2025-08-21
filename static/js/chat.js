@@ -389,6 +389,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Format the citation content for better display
         let formattedContent = citationData.content || 'No content available';
+        // Reformat citation content for human readability
+        if (formattedContent !== 'No content available') {
+            // 1. Replace multiple consecutive \n (with optional spaces) with a unique marker for paragraphs
+            formattedContent = formattedContent.replace(/(\n\s*){2,}/g, '\nPARAGRAPH_BREAK\n');
+            // 2. Remove \n in the middle of sentences/words (not after a period)
+            formattedContent = formattedContent.replace(/([^\.])\n(?!PARAGRAPH_BREAK)/g, '$1 ');
+            // 3. Restore line breaks after periods (keep \n after .)
+            formattedContent = formattedContent.replace(/\.\s*\n(?!PARAGRAPH_BREAK)/g, '.\n');
+            // 4. Split into paragraphs by PARAGRAPH_BREAK
+            let paragraphs = formattedContent.split('PARAGRAPH_BREAK');
+            paragraphs = paragraphs.map(p => p.replace(/^[\s\n]+|[\s\n]+$/g, '').replace(/ +/g, ' '));
+            formattedContent = paragraphs.join('\n\n');
+            // 5. Trim extra spaces and line breaks at start/end
+            formattedContent = formattedContent.trim();
+        }
         
         // Create overlay and modal
         const overlay = document.createElement('div');
